@@ -1,0 +1,36 @@
+:root {
+  color-scheme: light dark;
+  font-family: system-ui, sans-serif;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.emergency {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background: #fde2e1;
+  color: #7a1210;
+}
+.situations {
+  display: grid;
+  gap: 0.75rem;
+}
+.situations button {
+  font-size: 1.25rem;
+  padding: 1rem;
+}
+.situations button[aria-pressed='true'] {
+  outline: 3px solid currentColor;
+}
+.status-pending {
+  color: green;
+}
+.log {
+  font-family: ui-monospace, monospace;
+  font-size: 0.85rem;
+}

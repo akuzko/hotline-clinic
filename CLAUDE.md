@@ -1,13 +1,13 @@
 # Hotline Clinic
 
-Urgent same-day clinic booking with live availability. This is a course project for *AI Fluency for Builders*.
+Urgent same-day clinic booking with live availability. This is a course project for _AI Fluency for Builders_.
 
 ## Source of truth
 
 - `docs/05-technical-spec.md`: the stack, data model, how realtime works, timers.
 - `docs/03-acceptance-tests.md`: the definition of done. Every acceptance test becomes an automated test (Vitest or Playwright), **written before the code it covers**.
 - `docs/README.md`: confirmed decisions and what's out of scope. Out-of-scope items don't get built without asking.
-- `docs/01`, `docs/02`, `docs/04`: the problem brief, delegation plan and product requirement. Use them for *why* something is the way it is.
+- `docs/01`, `docs/02`, `docs/04`: the problem brief, delegation plan and product requirement. Use them for _why_ something is the way it is.
 
 If the code and the docs disagree, stop and ask. Don't quietly change either one.
 
@@ -33,4 +33,17 @@ Never "simplify" these away. If a task seems to need one of them broken, stop an
 
 ## Commands
 
-To be filled in once the project is scaffolded.
+Node 24 (`.node-version`), npm workspaces (`apps/api`, `apps/web`, `packages/shared`). Architecture: `docs/06-architecture.md`.
+
+```sh
+cp .env.example .env        # first time
+npm install
+npm run db:up               # Postgres 18 in Docker on :5434 (dbs: hotline, hotline_test)
+npm run dev                 # API :3000 + web :5173 (Vite proxies /trpc)
+npm test                    # Vitest integration tests (needs db:up)
+npm run typecheck
+npm run format              # Prettier
+npm run notify --workspace @hotline/api -- gp   # fire a test availability event
+```
+
+`.npmrc` pins exact versions and sets `before=` to a date at least 7 days old. Move it forward on purpose when upgrading dependencies.
